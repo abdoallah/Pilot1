@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="empty2">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/artifacts/bin/Application.UnitTests/debug/EmptyFiles/archive/empty.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
