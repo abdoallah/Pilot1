@@ -4,7 +4,10 @@
       "Bash(dotnet build *)",
       "Bash(dotnet ef *)",
       "Bash(dotnet tool *)",
-      "Bash(dotnet package search *)"
+      "Bash(dotnet package search *)",
+      "PowerShell(sc.exe create \"actions.runner.abdoallah.Pilot1.Self-hosted-runner\" binpath= \"\\\\\"D:\\\\The Kitchen\\\\Pilot\\\\Pilot\\\\actions-runner\\\\bin\\\\Runner.Listener.exe\\\\\" --startuptype autostartup\" start= delayed-auto obj= LocalSystem)",
+      "PowerShell(Get-EventLog -LogName System -Newest 50 | Where-Object { $_.EntryType -eq \"Error\" -and $_.TimeGenerated -gt \\(Get-Date\\).AddMinutes\\(-10\\) } | Select-Object TimeGenerated, Source, Message | Format-List)",
+      "PowerShell(Get-ItemProperty *)"
     ]
   }
 }

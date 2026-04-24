@@ -1,8 +1,11 @@
 name: CD
 
 on:
-  push:
-    branches: [ main ]
+  # Only deploy when CI passes on main — prevents deploying broken code
+  workflow_run:
+    workflows: ["CI"]
+    types: [completed]
+    branches: [main]
   workflow_dispatch:
 
 env:
@@ -12,15 +15,24 @@ env:
 jobs:
   deploy:
     name: Deploy to local IIS
-    # Self-hosted runner must be installed and running on this Windows machine.
-    # Set it up at: https://github.com/<owner>/<repo>/settings/actions/runners
     runs-on: self-hosted
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
 
     steps:
       - uses: actions/checkout@v4
 
       - name: Publish
         run: dotnet publish src/Web/Web.csproj -c Release -o "${{ github.workspace }}\publish" --no-self-contained
+
+      - name: Backup current deployment
+        shell: powershell
+        run: |
+          $site = "${{ vars.IIS_SITE_PATH }}"
+          $backup = "${site}_backup"
+          if (Test-Path $site) {
+            if (Test-Path $backup) { Remove-Item $backup -Recurse -Force }
+            Copy-Item -Path $site -Destination $backup -Recurse
+          }
 
       - name: Stop app pool
         shell: powershell
@@ -37,13 +49,11 @@ jobs:
 
       - name: Deploy files
         shell: powershell
-        run: |
-          Copy-Item -Path "${{ github.workspace }}\publish\*" `
-                    -Destination "${{ vars.IIS_SITE_PATH }}" `
-                    -Recurse -Force
+        run: Copy-Item -Path "${{ github.workspace }}\publish\*" -Destination "${{ vars.IIS_SITE_PATH }}" -Recurse -Force
 
       - name: Start app pool
         shell: powershell
+        if: always()
         run: |
           Import-Module WebAdministration
           Start-WebAppPool -Name "${{ vars.IIS_APP_POOL }}"
