@@ -1,6 +1,6 @@
-﻿using Pilot.Domain.Entities;
+﻿using CoPilot.Domain.Entities;
 
-namespace Pilot.Application.Common.Interfaces;
+namespace CoPilot.Application.Common.Interfaces;
 
 public interface IApplicationDbContext
 {

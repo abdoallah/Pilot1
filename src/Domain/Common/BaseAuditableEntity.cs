@@ -1,4 +1,4 @@
-﻿namespace Pilot.Domain.Common;
+﻿namespace CoPilot.Domain.Common;
 
 public abstract class BaseAuditableEntity : BaseEntity
 {

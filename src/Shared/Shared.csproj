@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <RootNamespace>Pilot.Shared</RootNamespace>
-    <AssemblyName>Pilot.Shared</AssemblyName>
+    <RootNamespace>CoPilot.Shared</RootNamespace>
+    <AssemblyName>CoPilot.Shared</AssemblyName>
   </PropertyGroup>
 
   <PropertyGroup>

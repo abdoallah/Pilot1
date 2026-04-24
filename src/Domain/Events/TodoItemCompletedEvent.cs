@@ -1,4 +1,4 @@
-﻿namespace Pilot.Domain.Events;
+﻿namespace CoPilot.Domain.Events;
 
 public class TodoItemCompletedEvent : BaseEvent
 {

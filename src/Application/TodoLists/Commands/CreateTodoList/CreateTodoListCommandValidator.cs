@@ -1,6 +1,6 @@
-﻿using Pilot.Application.Common.Interfaces;
+﻿using CoPilot.Application.Common.Interfaces;
 
-namespace Pilot.Application.TodoLists.Commands.CreateTodoList;
+namespace CoPilot.Application.TodoLists.Commands.CreateTodoList;
 
 public class CreateTodoListCommandValidator : AbstractValidator<CreateTodoListCommand>
 {

@@ -1,6 +1,6 @@
-﻿using Pilot.Application.Common.Interfaces;
+﻿using CoPilot.Application.Common.Interfaces;
 
-namespace Pilot.Application.TodoLists.Commands.UpdateTodoList;
+namespace CoPilot.Application.TodoLists.Commands.UpdateTodoList;
 
 public class UpdateTodoListCommandValidator : AbstractValidator<UpdateTodoListCommand>
 {

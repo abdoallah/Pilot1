@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <RootNamespace>Pilot.Infrastructure</RootNamespace>
-    <AssemblyName>Pilot.Infrastructure</AssemblyName>
+    <RootNamespace>CoPilot.Infrastructure</RootNamespace>
+    <AssemblyName>CoPilot.Infrastructure</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
@@ -10,6 +10,7 @@
     <PackageReference Include="Aspire.Microsoft.EntityFrameworkCore.SqlServer" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" />
+    <PackageReference Include="OpenTelemetry.Api" />
     <PackageReference Include="System.Security.Cryptography.Xml" />
   </ItemGroup>
 

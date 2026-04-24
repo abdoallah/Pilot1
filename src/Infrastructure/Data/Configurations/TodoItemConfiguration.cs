@@ -1,8 +1,8 @@
-﻿using Pilot.Domain.Entities;
+﻿using CoPilot.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Pilot.Infrastructure.Data.Configurations;
+namespace CoPilot.Infrastructure.Data.Configurations;
 
 public class TodoItemConfiguration : IEntityTypeConfiguration<TodoItem>
 {

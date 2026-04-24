@@ -1,12 +1,12 @@
 using System.Runtime.CompilerServices;
 using AutoMapper;
-using Pilot.Application.Common.Interfaces;
-using Pilot.Application.TodoLists.Queries.GetTodos;
-using Pilot.Domain.Entities;
+using CoPilot.Application.Common.Interfaces;
+using CoPilot.Application.TodoLists.Queries.GetTodos;
+using CoPilot.Domain.Entities;
 using Microsoft.Extensions.Logging;
 using NUnit.Framework;
 
-namespace Pilot.Application.UnitTests.Common.Mappings;
+namespace CoPilot.Application.UnitTests.Common.Mappings;
 
 public class MappingTests
 {

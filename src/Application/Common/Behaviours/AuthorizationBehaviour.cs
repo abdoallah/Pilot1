@@ -1,9 +1,9 @@
 ﻿using System.Reflection;
-using Pilot.Application.Common.Exceptions;
-using Pilot.Application.Common.Interfaces;
-using Pilot.Application.Common.Security;
+using CoPilot.Application.Common.Exceptions;
+using CoPilot.Application.Common.Interfaces;
+using CoPilot.Application.Common.Security;
 
-namespace Pilot.Application.Common.Behaviours;
+namespace CoPilot.Application.Common.Behaviours;
 
 public class AuthorizationBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse> 
     where TRequest : notnull

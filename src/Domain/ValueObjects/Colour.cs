@@ -1,4 +1,4 @@
-namespace Pilot.Domain.ValueObjects;
+namespace CoPilot.Domain.ValueObjects;
 
 public class Colour(string code) : ValueObject
 {

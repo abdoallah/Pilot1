@@ -1,7 +1,7 @@
-using Pilot.Application.Common.Interfaces;
-using Pilot.Domain.ValueObjects;
+using CoPilot.Application.Common.Interfaces;
+using CoPilot.Domain.ValueObjects;
 
-namespace Pilot.Application.TodoLists.Commands.UpdateTodoList;
+namespace CoPilot.Application.TodoLists.Commands.UpdateTodoList;
 
 public record UpdateTodoListCommand : IRequest
 {

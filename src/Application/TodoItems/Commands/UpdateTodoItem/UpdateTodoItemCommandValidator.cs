@@ -1,4 +1,4 @@
-﻿namespace Pilot.Application.TodoItems.Commands.UpdateTodoItem;
+﻿namespace CoPilot.Application.TodoItems.Commands.UpdateTodoItem;
 
 public class UpdateTodoItemCommandValidator : AbstractValidator<UpdateTodoItemCommand>
 {

@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 
-namespace Pilot.Web.Infrastructure;
+namespace CoPilot.Web.Infrastructure;
 
 /// <summary>
 /// Extends <see cref="IEndpointRouteBuilder"/> with convenience overloads used inside

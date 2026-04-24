@@ -1,4 +1,4 @@
-﻿namespace Pilot.Domain.Constants;
+﻿namespace CoPilot.Domain.Constants;
 
 public abstract class Roles
 {

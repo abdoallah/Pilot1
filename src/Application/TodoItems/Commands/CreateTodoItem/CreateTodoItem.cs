@@ -1,7 +1,7 @@
-﻿using Pilot.Application.Common.Interfaces;
-using Pilot.Domain.Entities;
+﻿using CoPilot.Application.Common.Interfaces;
+using CoPilot.Domain.Entities;
 
-namespace Pilot.Application.TodoItems.Commands.CreateTodoItem;
+namespace CoPilot.Application.TodoItems.Commands.CreateTodoItem;
 
 public record CreateTodoItemCommand : IRequest<int>
 {

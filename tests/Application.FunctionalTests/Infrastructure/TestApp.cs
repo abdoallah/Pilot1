@@ -1,12 +1,12 @@
-using Pilot.Domain.Constants;
-using Pilot.Infrastructure.Data;
-using Pilot.Infrastructure.Identity;
+using CoPilot.Domain.Constants;
+using CoPilot.Infrastructure.Data;
+using CoPilot.Infrastructure.Identity;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Pilot.Application.FunctionalTests.Infrastructure;
+namespace CoPilot.Application.FunctionalTests.Infrastructure;
 
 public static class TestApp
 {

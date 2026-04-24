@@ -1,4 +1,4 @@
-﻿namespace Pilot.Shared;
+﻿namespace CoPilot.Shared;
 
 public static class Services
 {
@@ -24,5 +24,5 @@ public static class Services
     /// The name of the Database.
     /// This is the name of the database that will be created and used by the application.
     /// </summary>
-    public const string Database = "PilotDb";
+    public const string Database = "CoPilotDb";
 }

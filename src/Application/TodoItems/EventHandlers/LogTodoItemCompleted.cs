@@ -1,7 +1,7 @@
-﻿using Pilot.Domain.Events;
+﻿using CoPilot.Domain.Events;
 using Microsoft.Extensions.Logging;
 
-namespace Pilot.Application.TodoItems.EventHandlers;
+namespace CoPilot.Application.TodoItems.EventHandlers;
 
 public class LogTodoItemCompleted : INotificationHandler<TodoItemCompletedEvent>
 {
@@ -14,7 +14,7 @@ public class LogTodoItemCompleted : INotificationHandler<TodoItemCompletedEvent>
 
     public Task Handle(TodoItemCompletedEvent notification, CancellationToken cancellationToken)
     {
-        _logger.LogInformation("Pilot Domain Event: {DomainEvent}", notification.GetType().Name);
+        _logger.LogInformation("CoPilot Domain Event: {DomainEvent}", notification.GetType().Name);
 
         return Task.CompletedTask;
     }

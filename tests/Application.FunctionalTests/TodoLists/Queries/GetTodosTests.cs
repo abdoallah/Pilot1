@@ -1,8 +1,8 @@
-﻿using Pilot.Application.TodoLists.Queries.GetTodos;
-using Pilot.Domain.Entities;
-using Pilot.Domain.ValueObjects;
+﻿using CoPilot.Application.TodoLists.Queries.GetTodos;
+using CoPilot.Domain.Entities;
+using CoPilot.Domain.ValueObjects;
 
-namespace Pilot.Application.FunctionalTests.TodoLists.Queries;
+namespace CoPilot.Application.FunctionalTests.TodoLists.Queries;
 
 public class GetTodosTests : TestBase
 {

@@ -1,11 +1,11 @@
-﻿using Pilot.Application.TodoItems.Commands.CreateTodoItem;
-using Pilot.Application.TodoItems.Commands.UpdateTodoItem;
-using Pilot.Application.TodoItems.Commands.UpdateTodoItemDetail;
-using Pilot.Application.TodoLists.Commands.CreateTodoList;
-using Pilot.Domain.Entities;
-using Pilot.Domain.Enums;
+﻿using CoPilot.Application.TodoItems.Commands.CreateTodoItem;
+using CoPilot.Application.TodoItems.Commands.UpdateTodoItem;
+using CoPilot.Application.TodoItems.Commands.UpdateTodoItemDetail;
+using CoPilot.Application.TodoLists.Commands.CreateTodoList;
+using CoPilot.Domain.Entities;
+using CoPilot.Domain.Enums;
 
-namespace Pilot.Application.FunctionalTests.TodoItems.Commands;
+namespace CoPilot.Application.FunctionalTests.TodoItems.Commands;
 
 public class UpdateTodoItemDetailTests : TestBase
 {

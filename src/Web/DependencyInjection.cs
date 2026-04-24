@@ -1,7 +1,7 @@
 using Azure.Identity;
-using Pilot.Application.Common.Interfaces;
-using Pilot.Infrastructure.Data;
-using Pilot.Web.Services;
+using CoPilot.Application.Common.Interfaces;
+using CoPilot.Infrastructure.Data;
+using CoPilot.Web.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Microsoft.Extensions.DependencyInjection;

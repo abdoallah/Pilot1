@@ -1,6 +1,6 @@
-﻿using Pilot.Application.Common.Interfaces;
+﻿using CoPilot.Application.Common.Interfaces;
 
-namespace Pilot.Application.TodoItems.Commands.DeleteTodoItem;
+namespace CoPilot.Application.TodoItems.Commands.DeleteTodoItem;
 
 public record DeleteTodoItemCommand(int Id) : IRequest;
 

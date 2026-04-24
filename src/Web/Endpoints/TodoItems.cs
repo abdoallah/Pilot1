@@ -1,10 +1,10 @@
-using Pilot.Application.TodoItems.Commands.CreateTodoItem;
-using Pilot.Application.TodoItems.Commands.DeleteTodoItem;
-using Pilot.Application.TodoItems.Commands.UpdateTodoItem;
-using Pilot.Application.TodoItems.Commands.UpdateTodoItemDetail;
+using CoPilot.Application.TodoItems.Commands.CreateTodoItem;
+using CoPilot.Application.TodoItems.Commands.DeleteTodoItem;
+using CoPilot.Application.TodoItems.Commands.UpdateTodoItem;
+using CoPilot.Application.TodoItems.Commands.UpdateTodoItemDetail;
 using Microsoft.AspNetCore.Http.HttpResults;
 
-namespace Pilot.Web.Endpoints;
+namespace CoPilot.Web.Endpoints;
 
 public class TodoItems : IEndpointGroup
 {

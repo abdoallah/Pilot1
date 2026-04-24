@@ -1,13 +1,13 @@
-﻿using Pilot.Domain.Constants;
-using Pilot.Domain.Entities;
-using Pilot.Domain.ValueObjects;
-using Pilot.Infrastructure.Identity;
+﻿using CoPilot.Domain.Constants;
+using CoPilot.Domain.Entities;
+using CoPilot.Domain.ValueObjects;
+using CoPilot.Infrastructure.Identity;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
-namespace Pilot.Infrastructure.Data;
+namespace CoPilot.Infrastructure.Data;
 
 public static class InitialiserExtensions
 {

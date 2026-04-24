@@ -1,6 +1,6 @@
-﻿using Pilot.Application.Common.Models;
+﻿using CoPilot.Application.Common.Models;
 
-namespace Pilot.Application.TodoLists.Queries.GetTodos;
+namespace CoPilot.Application.TodoLists.Queries.GetTodos;
 
 public class TodosVm
 {

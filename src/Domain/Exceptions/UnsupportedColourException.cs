@@ -1,4 +1,4 @@
-﻿namespace Pilot.Domain.Exceptions;
+﻿namespace CoPilot.Domain.Exceptions;
 
 public class UnsupportedColourException : Exception
 {

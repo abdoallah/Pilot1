@@ -1,6 +1,6 @@
-﻿using ValidationException = Pilot.Application.Common.Exceptions.ValidationException;
+﻿using ValidationException = CoPilot.Application.Common.Exceptions.ValidationException;
 
-namespace Pilot.Application.Common.Behaviours;
+namespace CoPilot.Application.Common.Behaviours;
 
 public class ValidationBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
     where TRequest : notnull

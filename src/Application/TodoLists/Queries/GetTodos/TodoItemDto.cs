@@ -1,6 +1,6 @@
-﻿using Pilot.Domain.Entities;
+﻿using CoPilot.Domain.Entities;
 
-namespace Pilot.Application.TodoLists.Queries.GetTodos;
+namespace CoPilot.Application.TodoLists.Queries.GetTodos;
 
 public class TodoItemDto
 {

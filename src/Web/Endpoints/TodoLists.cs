@@ -1,10 +1,10 @@
-using Pilot.Application.TodoLists.Commands.CreateTodoList;
-using Pilot.Application.TodoLists.Commands.DeleteTodoList;
-using Pilot.Application.TodoLists.Commands.UpdateTodoList;
-using Pilot.Application.TodoLists.Queries.GetTodos;
+using CoPilot.Application.TodoLists.Commands.CreateTodoList;
+using CoPilot.Application.TodoLists.Commands.DeleteTodoList;
+using CoPilot.Application.TodoLists.Commands.UpdateTodoList;
+using CoPilot.Application.TodoLists.Queries.GetTodos;
 using Microsoft.AspNetCore.Http.HttpResults;
 
-namespace Pilot.Web.Endpoints;
+namespace CoPilot.Web.Endpoints;
 
 public class TodoLists : IEndpointGroup
 {

@@ -1,8 +1,8 @@
-﻿using Pilot.Application.Common.Exceptions;
-using Pilot.Application.TodoLists.Commands.CreateTodoList;
-using Pilot.Domain.Entities;
+﻿using CoPilot.Application.Common.Exceptions;
+using CoPilot.Application.TodoLists.Commands.CreateTodoList;
+using CoPilot.Domain.Entities;
 
-namespace Pilot.Application.FunctionalTests.TodoLists.Commands;
+namespace CoPilot.Application.FunctionalTests.TodoLists.Commands;
 
 public class CreateTodoListTests : TestBase
 {

@@ -1,4 +1,4 @@
-namespace Pilot.Web.Infrastructure;
+namespace CoPilot.Web.Infrastructure;
 
 /// <summary>
 /// Defines a group of related Minimal API endpoints.

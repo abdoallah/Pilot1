@@ -1,4 +1,4 @@
-﻿namespace Pilot.Application.WeatherForecasts.Queries.GetWeatherForecasts;
+﻿namespace CoPilot.Application.WeatherForecasts.Queries.GetWeatherForecasts;
 
 public class WeatherForecast
 {

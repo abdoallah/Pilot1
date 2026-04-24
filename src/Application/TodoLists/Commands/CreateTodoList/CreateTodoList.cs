@@ -1,8 +1,8 @@
-﻿using Pilot.Application.Common.Interfaces;
-using Pilot.Domain.Entities;
-using Pilot.Domain.ValueObjects;
+﻿using CoPilot.Application.Common.Interfaces;
+using CoPilot.Domain.Entities;
+using CoPilot.Domain.ValueObjects;
 
-namespace Pilot.Application.TodoLists.Commands.CreateTodoList;
+namespace CoPilot.Application.TodoLists.Commands.CreateTodoList;
 
 public record CreateTodoListCommand : IRequest<int>
 {

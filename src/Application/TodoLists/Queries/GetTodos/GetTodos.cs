@@ -1,10 +1,10 @@
-﻿using Pilot.Application.Common.Interfaces;
-using Pilot.Application.Common.Models;
-using Pilot.Application.Common.Security;
-using Pilot.Domain.Enums;
-using Pilot.Domain.ValueObjects;
+﻿using CoPilot.Application.Common.Interfaces;
+using CoPilot.Application.Common.Models;
+using CoPilot.Application.Common.Security;
+using CoPilot.Domain.Enums;
+using CoPilot.Domain.ValueObjects;
 
-namespace Pilot.Application.TodoLists.Queries.GetTodos;
+namespace CoPilot.Application.TodoLists.Queries.GetTodos;
 
 [Authorize]
 public record GetTodosQuery : IRequest<TodosVm>;

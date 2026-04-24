@@ -1,7 +1,7 @@
-﻿using Pilot.Application.Common.Models;
+﻿using CoPilot.Application.Common.Models;
 using Microsoft.AspNetCore.Identity;
 
-namespace Pilot.Infrastructure.Identity;
+namespace CoPilot.Infrastructure.Identity;
 
 public static class IdentityResultExtensions
 {

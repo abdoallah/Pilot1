@@ -1,6 +1,6 @@
 using System.Reflection;
 
-namespace Pilot.Web.Infrastructure;
+namespace CoPilot.Web.Infrastructure;
 
 public static class WebApplicationExtensions
 {

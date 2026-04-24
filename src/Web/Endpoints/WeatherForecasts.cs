@@ -1,7 +1,7 @@
-using Pilot.Application.WeatherForecasts.Queries.GetWeatherForecasts;
+using CoPilot.Application.WeatherForecasts.Queries.GetWeatherForecasts;
 using Microsoft.AspNetCore.Http.HttpResults;
 
-namespace Pilot.Web.Endpoints;
+namespace CoPilot.Web.Endpoints;
 
 public class WeatherForecasts : IEndpointGroup
 {

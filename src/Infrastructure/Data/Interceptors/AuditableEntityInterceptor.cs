@@ -1,10 +1,10 @@
-﻿using Pilot.Application.Common.Interfaces;
-using Pilot.Domain.Common;
+﻿using CoPilot.Application.Common.Interfaces;
+using CoPilot.Domain.Common;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 
-namespace Pilot.Infrastructure.Data.Interceptors;
+namespace CoPilot.Infrastructure.Data.Interceptors;
 
 public class AuditableEntityInterceptor : SaveChangesInterceptor
 {

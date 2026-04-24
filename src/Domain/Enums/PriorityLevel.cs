@@ -1,4 +1,4 @@
-﻿namespace Pilot.Domain.Enums;
+﻿namespace CoPilot.Domain.Enums;
 
 public enum PriorityLevel
 {

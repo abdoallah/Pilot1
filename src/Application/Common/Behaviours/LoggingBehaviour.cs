@@ -1,8 +1,8 @@
-﻿using Pilot.Application.Common.Interfaces;
+﻿using CoPilot.Application.Common.Interfaces;
 using MediatR.Pipeline;
 using Microsoft.Extensions.Logging;
 
-namespace Pilot.Application.Common.Behaviours;
+namespace CoPilot.Application.Common.Behaviours;
 
 public class LoggingBehaviour<TRequest> : IRequestPreProcessor<TRequest>
     where TRequest : notnull
@@ -29,7 +29,7 @@ public class LoggingBehaviour<TRequest> : IRequestPreProcessor<TRequest>
             userName = await _identityService.GetUserNameAsync(userId);
         }
 
-        _logger.LogInformation("Pilot Request: {Name} {@UserId} {@UserName} {@Request}",
+        _logger.LogInformation("CoPilot Request: {Name} {@UserId} {@UserName} {@Request}",
             requestName, userId, userName, request);
     }
 }

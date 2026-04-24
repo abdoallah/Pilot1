@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <IsAspireSharedProject>true</IsAspireSharedProject>
-    <RootNamespace>Pilot.ServiceDefaults</RootNamespace>
-    <AssemblyName>Pilot.ServiceDefaults</AssemblyName>
+    <RootNamespace>CoPilot.ServiceDefaults</RootNamespace>
+    <AssemblyName>CoPilot.ServiceDefaults</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>

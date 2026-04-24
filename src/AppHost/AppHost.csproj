@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Pilot.AppHost</RootNamespace>
-    <AssemblyName>Pilot.AppHost</AssemblyName>
+    <RootNamespace>CoPilot.AppHost</RootNamespace>
+    <AssemblyName>CoPilot.AppHost</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>

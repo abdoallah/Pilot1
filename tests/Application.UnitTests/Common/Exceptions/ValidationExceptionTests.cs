@@ -1,9 +1,9 @@
-﻿using Pilot.Application.Common.Exceptions;
+﻿using CoPilot.Application.Common.Exceptions;
 using FluentValidation.Results;
 using NUnit.Framework;
 using Shouldly;
 
-namespace Pilot.Application.UnitTests.Common.Exceptions;
+namespace CoPilot.Application.UnitTests.Common.Exceptions;
 
 public class ValidationExceptionTests
 {

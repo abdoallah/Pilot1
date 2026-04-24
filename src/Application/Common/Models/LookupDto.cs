@@ -1,6 +1,6 @@
-﻿using Pilot.Domain.Entities;
+﻿using CoPilot.Domain.Entities;
 
-namespace Pilot.Application.Common.Models;
+namespace CoPilot.Application.Common.Models;
 
 public class LookupDto
 {

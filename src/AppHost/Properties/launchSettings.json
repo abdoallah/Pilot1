@@ -5,25 +5,25 @@
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
-      "applicationUrl": "https://pilot.dev.localhost:17271;http://pilot.dev.localhost:15276",
+      "applicationUrl": "https://copilot.dev.localhost:17099;http://copilot.dev.localhost:15092",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
         "DOTNET_ENVIRONMENT": "Development",
-        "DOTNET_DASHBOARD_OTLP_ENDPOINT_URL": "https://localhost:21072",
-        "DOTNET_RESOURCE_SERVICE_ENDPOINT_URL": "https://localhost:22235"
+        "DOTNET_DASHBOARD_OTLP_ENDPOINT_URL": "https://localhost:21192",
+        "DOTNET_RESOURCE_SERVICE_ENDPOINT_URL": "https://localhost:22016"
       }
     },
     "http": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
-      "applicationUrl": "http://pilot.dev.localhost:15276",
+      "applicationUrl": "http://copilot.dev.localhost:15092",
       "environmentVariables": {
         "ASPIRE_ALLOW_UNSECURED_TRANSPORT": "true",
         "ASPNETCORE_ENVIRONMENT": "Development",
         "DOTNET_ENVIRONMENT": "Development",
-        "DOTNET_DASHBOARD_OTLP_ENDPOINT_URL": "http://localhost:19035",
-        "DOTNET_RESOURCE_SERVICE_ENDPOINT_URL": "http://localhost:20048"
+        "DOTNET_DASHBOARD_OTLP_ENDPOINT_URL": "http://localhost:19133",
+        "DOTNET_RESOURCE_SERVICE_ENDPOINT_URL": "http://localhost:20230"
       }
     },
     "manifest": {

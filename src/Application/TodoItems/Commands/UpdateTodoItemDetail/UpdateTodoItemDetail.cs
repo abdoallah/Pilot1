@@ -1,7 +1,7 @@
-﻿using Pilot.Application.Common.Interfaces;
-using Pilot.Domain.Enums;
+﻿using CoPilot.Application.Common.Interfaces;
+using CoPilot.Domain.Enums;
 
-namespace Pilot.Application.TodoItems.Commands.UpdateTodoItemDetail;
+namespace CoPilot.Application.TodoItems.Commands.UpdateTodoItemDetail;
 
 public record UpdateTodoItemDetailCommand : IRequest
 {

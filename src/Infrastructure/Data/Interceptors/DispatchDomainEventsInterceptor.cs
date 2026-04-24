@@ -1,9 +1,9 @@
-﻿using Pilot.Domain.Common;
+﻿using CoPilot.Domain.Common;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 
-namespace Pilot.Infrastructure.Data.Interceptors;
+namespace CoPilot.Infrastructure.Data.Interceptors;
 
 public class DispatchDomainEventsInterceptor : SaveChangesInterceptor
 {

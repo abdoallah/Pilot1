@@ -1,6 +1,6 @@
-using Pilot.Shared;
+using CoPilot.Shared;
 
-namespace Pilot.TestAppHost;
+namespace CoPilot.TestAppHost;
 
 public class Program
 {

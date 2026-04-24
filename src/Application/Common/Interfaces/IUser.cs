@@ -1,4 +1,4 @@
-﻿namespace Pilot.Application.Common.Interfaces;
+﻿namespace CoPilot.Application.Common.Interfaces;
 
 public interface IUser
 {

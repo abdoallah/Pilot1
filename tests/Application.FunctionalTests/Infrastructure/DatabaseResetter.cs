@@ -2,7 +2,7 @@ using Microsoft.Data.SqlClient;
 using Respawn;
 using System.Data.Common;
 
-namespace Pilot.Application.FunctionalTests.Infrastructure;
+namespace CoPilot.Application.FunctionalTests.Infrastructure;
 
 internal sealed class DatabaseResetter : IAsyncDisposable
 {

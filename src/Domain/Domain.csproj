@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <RootNamespace>Pilot.Domain</RootNamespace>
-    <AssemblyName>Pilot.Domain</AssemblyName>
+    <RootNamespace>CoPilot.Domain</RootNamespace>
+    <AssemblyName>CoPilot.Domain</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>

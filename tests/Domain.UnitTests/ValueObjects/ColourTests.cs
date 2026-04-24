@@ -1,9 +1,9 @@
-using Pilot.Domain.Exceptions;
-using Pilot.Domain.ValueObjects;
+using CoPilot.Domain.Exceptions;
+using CoPilot.Domain.ValueObjects;
 using NUnit.Framework;
 using Shouldly;
 
-namespace Pilot.Domain.UnitTests.ValueObjects;
+namespace CoPilot.Domain.UnitTests.ValueObjects;
 
 public class ColourTests
 {

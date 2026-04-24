@@ -1,9 +1,9 @@
-﻿using Pilot.Infrastructure.Identity;
+﻿using CoPilot.Infrastructure.Identity;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Pilot.Web.Endpoints;
+namespace CoPilot.Web.Endpoints;
 
 public class Users : IEndpointGroup
 {

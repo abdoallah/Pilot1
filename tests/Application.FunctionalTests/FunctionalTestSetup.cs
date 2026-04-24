@@ -1,6 +1,6 @@
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Pilot.Application.FunctionalTests;
+namespace CoPilot.Application.FunctionalTests;
 
 [SetUpFixture]
 public class FunctionalTestSetup

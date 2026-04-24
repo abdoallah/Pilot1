@@ -1,5 +1,5 @@
 ﻿using System.Reflection;
-using Pilot.Application.Common.Behaviours;
+using CoPilot.Application.Common.Behaviours;
 using Microsoft.Extensions.Hosting;
 
 namespace Microsoft.Extensions.DependencyInjection;

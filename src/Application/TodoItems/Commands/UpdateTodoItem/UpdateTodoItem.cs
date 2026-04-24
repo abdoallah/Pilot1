@@ -1,6 +1,6 @@
-﻿using Pilot.Application.Common.Interfaces;
+﻿using CoPilot.Application.Common.Interfaces;
 
-namespace Pilot.Application.TodoItems.Commands.UpdateTodoItem;
+namespace CoPilot.Application.TodoItems.Commands.UpdateTodoItem;
 
 public record UpdateTodoItemCommand : IRequest
 {

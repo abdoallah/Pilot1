@@ -1,4 +1,4 @@
-using Pilot.Shared;
+using CoPilot.Shared;
 
 var builder = DistributedApplication.CreateBuilder(args);
 

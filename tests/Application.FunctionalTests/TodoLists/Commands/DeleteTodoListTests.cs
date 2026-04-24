@@ -1,8 +1,8 @@
-﻿using Pilot.Application.TodoLists.Commands.CreateTodoList;
-using Pilot.Application.TodoLists.Commands.DeleteTodoList;
-using Pilot.Domain.Entities;
+﻿using CoPilot.Application.TodoLists.Commands.CreateTodoList;
+using CoPilot.Application.TodoLists.Commands.DeleteTodoList;
+using CoPilot.Domain.Entities;
 
-namespace Pilot.Application.FunctionalTests.TodoLists.Commands;
+namespace CoPilot.Application.FunctionalTests.TodoLists.Commands;
 
 public class DeleteTodoListTests : TestBase
 {

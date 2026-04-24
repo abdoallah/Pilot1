@@ -1,10 +1,10 @@
-using Pilot.Application.Common.Interfaces;
-using Pilot.Application.Common.Models;
+using CoPilot.Application.Common.Interfaces;
+using CoPilot.Application.Common.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
-namespace Pilot.Infrastructure.Identity;
+namespace CoPilot.Infrastructure.Identity;
 
 public class IdentityService : IIdentityService
 {

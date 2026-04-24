@@ -1,4 +1,4 @@
-﻿namespace Pilot.Domain.Entities;
+﻿namespace CoPilot.Domain.Entities;
 
 public class TodoItem : BaseAuditableEntity
 {

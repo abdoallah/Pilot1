@@ -1,4 +1,4 @@
-namespace Pilot.Application.FunctionalTests.Infrastructure;
+namespace CoPilot.Application.FunctionalTests.Infrastructure;
 
 public abstract class TestBase
 {

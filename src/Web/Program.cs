@@ -1,4 +1,4 @@
-using Pilot.Infrastructure.Data;
+using CoPilot.Infrastructure.Data;
 using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);

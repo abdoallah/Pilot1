@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <RootNamespace>Pilot.Domain.UnitTests</RootNamespace>
-        <AssemblyName>Pilot.Domain.UnitTests</AssemblyName>
+        <RootNamespace>CoPilot.Domain.UnitTests</RootNamespace>
+        <AssemblyName>CoPilot.Domain.UnitTests</AssemblyName>
     </PropertyGroup>
 
     <ItemGroup>

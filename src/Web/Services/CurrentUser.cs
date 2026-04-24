@@ -1,8 +1,8 @@
 ﻿using System.Security.Claims;
 
-using Pilot.Application.Common.Interfaces;
+using CoPilot.Application.Common.Interfaces;
 
-namespace Pilot.Web.Services;
+namespace CoPilot.Web.Services;
 
 public class CurrentUser : IUser
 {

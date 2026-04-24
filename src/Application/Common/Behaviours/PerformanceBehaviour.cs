@@ -1,8 +1,8 @@
 ﻿using System.Diagnostics;
-using Pilot.Application.Common.Interfaces;
+using CoPilot.Application.Common.Interfaces;
 using Microsoft.Extensions.Logging;
 
-namespace Pilot.Application.Common.Behaviours;
+namespace CoPilot.Application.Common.Behaviours;
 
 public class PerformanceBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
     where TRequest : notnull
@@ -45,7 +45,7 @@ public class PerformanceBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequ
                 userName = await _identityService.GetUserNameAsync(userId);
             }
 
-            _logger.LogWarning("Pilot Long Running Request: {Name} ({ElapsedMilliseconds} milliseconds) {@UserId} {@UserName} {@Request}",
+            _logger.LogWarning("CoPilot Long Running Request: {Name} ({ElapsedMilliseconds} milliseconds) {@UserId} {@UserName} {@Request}",
                 requestName, elapsedMilliseconds, userId, userName, request);
         }
 

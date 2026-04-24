@@ -1,11 +1,11 @@
 ﻿using System.Reflection;
-using Pilot.Application.Common.Interfaces;
-using Pilot.Domain.Entities;
-using Pilot.Infrastructure.Identity;
+using CoPilot.Application.Common.Interfaces;
+using CoPilot.Domain.Entities;
+using CoPilot.Infrastructure.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace Pilot.Infrastructure.Data;
+namespace CoPilot.Infrastructure.Data;
 
 public class ApplicationDbContext : IdentityDbContext<ApplicationUser>, IApplicationDbContext
 {

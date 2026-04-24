@@ -1,7 +1,7 @@
-﻿using Pilot.Application.Common.Interfaces;
-using Pilot.Infrastructure.Data;
-using Pilot.Infrastructure.Data.Interceptors;
-using Pilot.Infrastructure.Identity;
+﻿using CoPilot.Application.Common.Interfaces;
+using CoPilot.Infrastructure.Data;
+using CoPilot.Infrastructure.Data.Interceptors;
+using CoPilot.Infrastructure.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;

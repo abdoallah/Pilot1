@@ -1,8 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <RootNamespace>Pilot.Application.FunctionalTests</RootNamespace>
-        <AssemblyName>Pilot.Application.FunctionalTests</AssemblyName>
+        <RootNamespace>CoPilot.Application.FunctionalTests</RootNamespace>
+        <AssemblyName>CoPilot.Application.FunctionalTests</AssemblyName>
     </PropertyGroup>
 
     <ItemGroup>

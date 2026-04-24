@@ -1,8 +1,8 @@
-using Pilot.Application.Common.Exceptions;
+using CoPilot.Application.Common.Exceptions;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Pilot.Web.Infrastructure;
+namespace CoPilot.Web.Infrastructure;
 
 /// <summary>
 /// Converts well-known application exceptions into RFC 9110-compliant <see cref="ProblemDetails"/> responses,

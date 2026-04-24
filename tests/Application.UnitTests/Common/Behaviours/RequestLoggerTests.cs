@@ -1,11 +1,11 @@
-﻿using Pilot.Application.Common.Behaviours;
-using Pilot.Application.Common.Interfaces;
-using Pilot.Application.TodoItems.Commands.CreateTodoItem;
+﻿using CoPilot.Application.Common.Behaviours;
+using CoPilot.Application.Common.Interfaces;
+using CoPilot.Application.TodoItems.Commands.CreateTodoItem;
 using Microsoft.Extensions.Logging;
 using Moq;
 using NUnit.Framework;
 
-namespace Pilot.Application.UnitTests.Common.Behaviours;
+namespace CoPilot.Application.UnitTests.Common.Behaviours;
 
 public class RequestLoggerTests
 {

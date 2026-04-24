@@ -1,4 +1,4 @@
-﻿namespace Pilot.Application.Common.Models;
+﻿namespace CoPilot.Application.Common.Models;
 
 public class Result
 {

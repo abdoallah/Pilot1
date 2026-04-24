@@ -1,6 +1,6 @@
-﻿using Pilot.Application.Common.Models;
+﻿using CoPilot.Application.Common.Models;
 
-namespace Pilot.Application.Common.Interfaces;
+namespace CoPilot.Application.Common.Interfaces;
 
 public interface IIdentityService
 {
