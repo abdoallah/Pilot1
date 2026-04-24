@@ -1,0 +1,46 @@
+name: CD — Docker
+
+on:
+  workflow_run:
+    workflows: ["CI"]
+    types: [completed]
+    branches: [main]
+  workflow_dispatch:
+
+env:
+  IMAGE_NAME: copilot-web
+  CONTAINER_NAME: copilot-web
+  DB_NETWORK: databases_default
+
+jobs:
+  deploy:
+    name: Deploy to Docker
+    runs-on: self-hosted
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build image
+        run: docker build -t ${{ env.IMAGE_NAME }}:latest .
+
+      - name: Stop existing container
+        shell: powershell
+        run: |
+          if (docker ps -q --filter "name=^${{ env.CONTAINER_NAME }}$") {
+            docker stop ${{ env.CONTAINER_NAME }}
+          }
+          if (docker ps -aq --filter "name=^${{ env.CONTAINER_NAME }}$") {
+            docker rm ${{ env.CONTAINER_NAME }}
+          }
+
+      - name: Run container
+        run: >-
+          docker run -d
+          --name ${{ env.CONTAINER_NAME }}
+          --network ${{ env.DB_NETWORK }}
+          --restart unless-stopped
+          -p ${{ vars.DOCKER_PORT }}:8080
+          -e "ConnectionStrings__CoPilotDb=Server=sqlserver,1433;Database=PilotDb;User Id=sa;Password=${{ secrets.SA_PASSWORD }};TrustServerCertificate=true;"
+          -e "ASPNETCORE_ENVIRONMENT=Production"
+          ${{ env.IMAGE_NAME }}:latest

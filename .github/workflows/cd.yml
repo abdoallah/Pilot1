@@ -1,7 +1,6 @@
-name: CD
+name: CD — IIS
 
 on:
-  # Only deploy when CI passes on main — prevents deploying broken code
   workflow_run:
     workflows: ["CI"]
     types: [completed]

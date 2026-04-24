@@ -1,0 +1,9 @@
+**/.git
+**/artifacts
+**/_work
+**/actions-runner
+**/*.user
+**/*.suo
+**/bin
+**/obj
+tests/
