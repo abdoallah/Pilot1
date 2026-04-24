@@ -1,0 +1,49 @@
+name: CD
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+env:
+  DOTNET_NOLOGO: true
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+
+jobs:
+  deploy:
+    name: Deploy to local IIS
+    # Self-hosted runner must be installed and running on this Windows machine.
+    # Set it up at: https://github.com/<owner>/<repo>/settings/actions/runners
+    runs-on: self-hosted
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Publish
+        run: dotnet publish src/Web/Web.csproj -c Release -o "${{ github.workspace }}\publish" --no-self-contained
+
+      - name: Stop app pool
+        shell: pwsh
+        run: |
+          Import-Module WebAdministration
+          $pool = "${{ vars.IIS_APP_POOL }}"
+          if ((Get-WebAppPoolState -Name $pool).Value -eq "Started") {
+            Stop-WebAppPool -Name $pool
+            $t = 30
+            while ((Get-WebAppPoolState -Name $pool).Value -ne "Stopped" -and $t -gt 0) {
+              Start-Sleep -Seconds 1; $t--
+            }
+          }
+
+      - name: Deploy files
+        shell: pwsh
+        run: |
+          Copy-Item -Path "${{ github.workspace }}\publish\*" `
+                    -Destination "${{ vars.IIS_SITE_PATH }}" `
+                    -Recurse -Force
+
+      - name: Start app pool
+        shell: pwsh
+        run: |
+          Import-Module WebAdministration
+          Start-WebAppPool -Name "${{ vars.IIS_APP_POOL }}"
