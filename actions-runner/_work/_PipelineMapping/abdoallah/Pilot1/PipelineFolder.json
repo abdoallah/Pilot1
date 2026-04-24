@@ -1,0 +1,12 @@
+﻿{
+  "repositoryName": "abdoallah/Pilot1",
+  "pipelineDirectory": "Pilot1",
+  "workspaceDirectory": "Pilot1\\Pilot1",
+  "repositories": {
+    "abdoallah/Pilot1": {
+      "repositoryPath": "Pilot1\\Pilot1",
+      "lastRunOn": "04/24/2026 15:22:26 +03:00"
+    }
+  },
+  "lastRunOn": "04/24/2026 15:22:26 +03:00"
+}

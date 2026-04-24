@@ -23,7 +23,7 @@ jobs:
         run: dotnet publish src/Web/Web.csproj -c Release -o "${{ github.workspace }}\publish" --no-self-contained
 
       - name: Stop app pool
-        shell: pwsh
+        shell: powershell
         run: |
           Import-Module WebAdministration
           $pool = "${{ vars.IIS_APP_POOL }}"
@@ -36,14 +36,14 @@ jobs:
           }
 
       - name: Deploy files
-        shell: pwsh
+        shell: powershell
         run: |
           Copy-Item -Path "${{ github.workspace }}\publish\*" `
                     -Destination "${{ vars.IIS_SITE_PATH }}" `
                     -Recurse -Force
 
       - name: Start app pool
-        shell: pwsh
+        shell: powershell
         run: |
           Import-Module WebAdministration
           Start-WebAppPool -Name "${{ vars.IIS_APP_POOL }}"
