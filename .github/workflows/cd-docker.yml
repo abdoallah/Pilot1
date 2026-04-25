@@ -43,4 +43,6 @@ jobs:
           -p ${{ vars.DOCKER_PORT }}:8080
           -e "ConnectionStrings__CoPilotDb=Server=sqlserver,1433;Database=PilotDb;User Id=sa;Password=${{ secrets.SA_PASSWORD }};TrustServerCertificate=true;"
           -e "ASPNETCORE_ENVIRONMENT=Production"
+          -e "OTEL_EXPORTER_OTLP_ENDPOINT=http://otel-collector:4317"
+          -e "OTEL_SERVICE_NAME=copilot-web"
           ${{ env.IMAGE_NAME }}:latest

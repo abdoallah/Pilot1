@@ -1,0 +1,11 @@
+﻿{
+  "agentId": 22,
+  "agentName": "DESKTOP-GDKPD6V",
+  "poolId": 1,
+  "poolName": "Default",
+  "serverUrl": "https://pipelinesghubeus10.actions.githubusercontent.com/6EtMkHOed50mba3c9CZQbuVjDa1Jnjka6Oy6lhAqimieCtl6ND/",
+  "gitHubUrl": "https://github.com/abdoallah/Pilot1",
+  "workFolder": "_work",
+  "useV2Flow": true,
+  "serverUrlV2": "https://broker.actions.githubusercontent.com/"
+}

@@ -1,0 +1,37 @@
+groups:
+  - name: copilot.slo
+    interval: 30s
+    rules:
+
+      - alert: HighErrorRate
+        expr: |
+          sum(rate(copilot_http_server_request_duration_seconds_count{http_response_status_code=~"5.."}[5m]))
+          /
+          sum(rate(copilot_http_server_request_duration_seconds_count[5m])) * 100 > 1
+        for: 2m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Error rate above 1% SLO"
+          description: "5xx error rate is {{ $value | printf \"%.2f\" }}% (threshold 1%)"
+
+      - alert: HighLatency
+        expr: |
+          histogram_quantile(0.95,
+            sum(rate(copilot_http_server_request_duration_seconds_bucket[5m])) by (le)
+          ) > 0.5
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "p95 latency above 500ms SLO"
+          description: "p95 latency is {{ $value | printf \"%.3f\" }}s (threshold 0.5s)"
+
+      - alert: AppDown
+        expr: absent(copilot_http_server_request_duration_seconds_count)
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "CoPilot API is not sending metrics"
+          description: "No metrics received for over 1 minute — app may be down"
