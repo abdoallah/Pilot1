@@ -8,6 +8,8 @@ Run `dotnet build` to build the solution.
 
 The repository's `NuGet.Config` uses nuget.org as its only package source, so local, CI, and Docker restores do not depend on feeds configured on an individual machine. Package vulnerability auditing remains enabled and warnings are treated as errors.
 
+See [CI and deployment](docs/deployment.md) for release artifacts, GitHub environment settings, credentials, database migration adoption, and rollback procedures.
+
 ## Run
 
 To run the application:

@@ -3,6 +3,16 @@ using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// The Local profile uses an existing database and must never run development seeding.
+// Keep its credentials separate from the disposable Aspire Development database.
+if (builder.Environment.IsEnvironment("Local"))
+{
+    builder.Configuration
+        .AddUserSecrets("CoPilot.Web.Local")
+        .AddEnvironmentVariables()
+        .AddCommandLine(args);
+}
+
 // Add services to the container.
 builder.AddServiceDefaults();
 

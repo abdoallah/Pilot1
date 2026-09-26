@@ -3,6 +3,7 @@ using CoPilot.Application.Common.Interfaces;
 using CoPilot.Infrastructure.Data;
 using CoPilot.Web.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.DataProtection;
 
 namespace Microsoft.Extensions.DependencyInjection;
 
@@ -10,6 +11,19 @@ public static class DependencyInjection
 {
     public static void AddWebServices(this IHostApplicationBuilder builder)
     {
+        var dataProtection = builder.Services.AddDataProtection()
+            .SetApplicationName("CoPilot.Web");
+        var keysPath = builder.Configuration["DataProtection:KeysPath"];
+        if (!string.IsNullOrWhiteSpace(keysPath))
+        {
+            Directory.CreateDirectory(keysPath);
+            dataProtection.PersistKeysToFileSystem(new DirectoryInfo(keysPath));
+            if (OperatingSystem.IsWindows())
+            {
+                dataProtection.ProtectKeysWithDpapi();
+            }
+        }
+
         builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
         builder.Services.AddScoped<IUser, CurrentUser>();

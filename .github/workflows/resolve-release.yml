@@ -1,0 +1,54 @@
+name: Resolve tested release
+
+on:
+  workflow_call:
+    inputs:
+      run_id:
+        required: true
+        type: string
+      allow_older:
+        default: false
+        type: boolean
+    outputs:
+      sha:
+        value: ${{ jobs.resolve.outputs.sha }}
+      run_id:
+        value: ${{ jobs.resolve.outputs.run_id }}
+      eligible:
+        value: ${{ jobs.resolve.outputs.eligible }}
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  resolve:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    outputs:
+      sha: ${{ steps.release.outputs.sha }}
+      run_id: ${{ steps.release.outputs.run_id }}
+      eligible: ${{ steps.release.outputs.eligible }}
+    steps:
+      - uses: actions/github-script@v7
+        id: release
+        env:
+          CI_RUN_ID: ${{ inputs.run_id }}
+          ALLOW_OLDER: ${{ inputs.allow_older }}
+        with:
+          script: |
+            const runId = process.env.CI_RUN_ID;
+            if (!/^[1-9][0-9]*$/.test(runId)) throw new Error('A successful CI run ID is required.');
+            const {data: run} = await github.rest.actions.getWorkflowRun({...context.repo, run_id: Number(runId)});
+            const {data: workflow} = await github.rest.actions.getWorkflow({...context.repo, workflow_id: 'ci.yml'});
+            const repository = `${context.repo.owner}/${context.repo.repo}`;
+            if (run.workflow_id !== workflow.id || run.status !== 'completed' || run.conclusion !== 'success' ||
+                run.event !== 'push' || run.head_branch !== 'main' || run.head_repository?.full_name !== repository) {
+              throw new Error('Deployment requires a successful CI push run from main in this repository.');
+            }
+            const {data: main} = await github.rest.git.getRef({...context.repo, ref: 'heads/main'});
+            const eligible = process.env.ALLOW_OLDER === 'true' || main.object.sha === run.head_sha;
+            if (!eligible) core.notice('Skipping an older automatic deployment because main has advanced.');
+            core.setOutput('sha', run.head_sha);
+            core.setOutput('run_id', run.id);
+            core.setOutput('eligible', String(eligible));
