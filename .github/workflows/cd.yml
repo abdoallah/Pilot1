@@ -1,58 +1,64 @@
-name: CD — IIS
+name: CD - IIS
 
 on:
   workflow_run:
-    workflows: ["CI"]
+    workflows: [CI]
     types: [completed]
     branches: [main]
   workflow_dispatch:
+    inputs:
+      ci_run_id:
+        description: Successful CI push run ID from main (also used for rollback)
+        required: true
+        type: string
 
-env:
-  DOTNET_NOLOGO: true
-  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: deploy-production-iis
+  cancel-in-progress: false
 
 jobs:
+  release:
+    if: >-
+      (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main') ||
+      (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push' &&
+       github.event.workflow_run.head_repository.full_name == github.repository)
+    uses: ./.github/workflows/resolve-release.yml
+    with:
+      run_id: ${{ github.event_name == 'workflow_dispatch' && inputs.ci_run_id || format('{0}', github.event.workflow_run.id) }}
+      allow_older: ${{ github.event_name == 'workflow_dispatch' }}
   deploy:
-    name: Deploy to local IIS
-    runs-on: self-hosted
-    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
-
+    needs: release
+    if: needs.release.outputs.eligible == 'true'
+    runs-on: [self-hosted, Windows, X64, iis]
+    environment: production-iis
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
-
-      - name: Publish
-        run: dotnet publish src/Web/Web.csproj -c Release -o "${{ github.workspace }}\publish" --no-self-contained
-
-      - name: Backup current deployment
+        with:
+          ref: ${{ needs.release.outputs.sha }}
+          persist-credentials: false
+      - uses: actions/download-artifact@v4
+        with:
+          name: iis-release
+          path: artifacts/deploy/iis
+          run-id: ${{ needs.release.outputs.run_id }}
+          github-token: ${{ github.token }}
+      - name: Deploy tested IIS release
         shell: powershell
-        run: |
-          $site = "${{ vars.IIS_SITE_PATH }}"
-          $backup = "${site}_backup"
-          if (Test-Path $site) {
-            if (Test-Path $backup) { Remove-Item $backup -Recurse -Force }
-            Copy-Item -Path $site -Destination $backup -Recurse
-          }
-
-      - name: Stop app pool
-        shell: powershell
-        run: |
-          Import-Module WebAdministration
-          $pool = "${{ vars.IIS_APP_POOL }}"
-          if ((Get-WebAppPoolState -Name $pool).Value -eq "Started") {
-            Stop-WebAppPool -Name $pool
-            $t = 30
-            while ((Get-WebAppPoolState -Name $pool).Value -ne "Stopped" -and $t -gt 0) {
-              Start-Sleep -Seconds 1; $t--
-            }
-          }
-
-      - name: Deploy files
-        shell: powershell
-        run: Copy-Item -Path "${{ github.workspace }}\publish\*" -Destination "${{ vars.IIS_SITE_PATH }}" -Recurse -Force
-
-      - name: Start app pool
-        shell: powershell
-        if: always()
-        run: |
-          Import-Module WebAdministration
-          Start-WebAppPool -Name "${{ vars.IIS_APP_POOL }}"
+        env:
+          RELEASE_SHA: ${{ needs.release.outputs.sha }}
+          CI_RUN_ID: ${{ needs.release.outputs.run_id }}
+          DEPLOYMENT_ID: ${{ github.run_id }}-${{ github.run_attempt }}
+          IIS_SITE_NAME: ${{ vars.IIS_SITE_NAME }}
+          IIS_APP_POOL: ${{ vars.IIS_APP_POOL }}
+          IIS_RELEASES_PATH: ${{ vars.IIS_RELEASES_PATH }}
+          DATA_PROTECTION_KEYS_PATH: ${{ vars.DATA_PROTECTION_KEYS_PATH }}
+          HEALTH_URL: ${{ vars.HEALTH_URL }}
+          APP_CONNECTION_STRING: ${{ secrets.APP_CONNECTION_STRING }}
+          MIGRATION_CONNECTION_STRING: ${{ secrets.MIGRATION_CONNECTION_STRING }}
+          APPLY_DATABASE_MIGRATIONS: ${{ vars.APPLY_DATABASE_MIGRATIONS }}
+        run: ./scripts/deploy/Deploy-Iis.ps1

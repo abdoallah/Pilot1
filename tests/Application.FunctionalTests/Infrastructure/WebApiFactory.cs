@@ -12,6 +12,7 @@ public class WebApiFactory(string connectionString) : WebApplicationFactory<Prog
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
         builder
+            .UseEnvironment("Testing")
             .UseSetting("ConnectionStrings:CoPilotDb", connectionString);
 
         builder.ConfigureTestServices(services =>

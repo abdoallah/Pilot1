@@ -1,5 +1,6 @@
 using Microsoft.Data.SqlClient;
 using Respawn;
+using Respawn.Graph;
 using System.Data.Common;
 
 namespace CoPilot.Application.FunctionalTests.Infrastructure;
@@ -20,7 +21,10 @@ internal sealed class DatabaseResetter : IAsyncDisposable
         var connection = new SqlConnection(connectionString);
 
         await connection.OpenAsync();
-        var respawner = await Respawner.CreateAsync(connection);
+        var respawner = await Respawner.CreateAsync(connection, new RespawnerOptions
+        {
+            TablesToIgnore = [new Table("__EFMigrationsHistory")]
+        });
         await connection.CloseAsync();
         return new DatabaseResetter(connection, respawner);
     }

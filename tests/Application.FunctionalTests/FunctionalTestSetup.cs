@@ -1,4 +1,6 @@
 using Microsoft.Extensions.DependencyInjection;
+using CoPilot.Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace CoPilot.Application.FunctionalTests;
 
@@ -14,7 +16,7 @@ public class FunctionalTestSetup
     [OneTimeSetUp]
     public async Task OneTimeSetUp()
     {
-        var cts = new CancellationTokenSource(TimeSpan.FromSeconds(60));
+        using var cts = new CancellationTokenSource(TimeSpan.FromMinutes(5));
         var cancellationToken = cts.Token;
 
         var builder = await DistributedApplicationTestingBuilder
@@ -42,6 +44,11 @@ public class FunctionalTestSetup
 
         _factory = new WebApiFactory(connectionString);
         ScopeFactory = _factory.Services.GetRequiredService<IServiceScopeFactory>();
+        await using (var scope = ScopeFactory.CreateAsyncScope())
+        {
+            var database = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+            await database.Database.MigrateAsync(cancellationToken);
+        }
         DbResetter = await DatabaseResetter.CreateAsync(connectionString);
     }
 

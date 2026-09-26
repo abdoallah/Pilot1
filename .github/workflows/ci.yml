@@ -3,8 +3,15 @@ name: CI
 on:
   push:
   pull_request:
-    branches: [ main ]
+    branches: [main]
   workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.event_name }}-${{ github.ref }}
+  cancel-in-progress: true
 
 env:
   DOTNET_NOLOGO: true
@@ -12,31 +19,73 @@ env:
 
 jobs:
   build-and-test:
-    name: Build & Test
+    name: Build, test, and package
     runs-on: ubuntu-latest
-
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
-
+        with:
+          persist-credentials: false
       - uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '10.0.x'
-
-      - name: Cache NuGet packages
-        uses: actions/cache@v4
+          global-json-file: global.json
+      - name: Validate GitHub workflows
+        run: docker run --rm -v "$PWD:/repo:ro" -w /repo rhysd/actionlint:1.7.7 -color
+      - uses: actions/cache@v4
         with:
           path: ~/.nuget/packages
-          key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.props', '**/*.csproj') }}
+          key: ${{ runner.os }}-nuget-${{ hashFiles('global.json', 'NuGet.Config', '.config/dotnet-tools.json', '**/*.props', '**/*.csproj') }}
           restore-keys: ${{ runner.os }}-nuget-
-
       - name: Restore
-        run: dotnet restore
-
-      - name: Build
-        run: dotnet build --no-restore
-
-      - name: Test — Domain
-        run: dotnet test tests/Domain.UnitTests/Domain.UnitTests.csproj --no-build --verbosity normal
-
-      - name: Test — Application
-        run: dotnet test tests/Application.UnitTests/Application.UnitTests.csproj --no-build --verbosity normal
+        run: |
+          dotnet restore CoPilot.slnx
+          dotnet tool restore
+      - name: Build Release
+        run: dotnet build CoPilot.slnx -c Release --no-restore
+      - name: Check for missing migrations
+        run: dotnet ef migrations has-pending-model-changes --project src/Infrastructure --startup-project src/Web --configuration Release --no-build
+      - name: Unit and functional tests
+        run: dotnet test CoPilot.slnx -c Release --no-build --no-restore --logger trx --results-directory artifacts/test-results --blame-hang-timeout 10m
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: artifacts/test-results
+          retention-days: 14
+      - name: Publish IIS application and migration bundle
+        run: |
+          mkdir -p artifacts/release/iis
+          dotnet ef migrations script --idempotent --project src/Infrastructure --startup-project src/Web --configuration Release --no-build -o artifacts/release/iis/migrations.sql
+          dotnet publish src/Web/Web.csproj -c Release -r win-x64 --self-contained false -o artifacts/release/iis/site
+          dotnet ef migrations bundle --project src/Infrastructure --startup-project src/Web --configuration Release --target-runtime win-x64 --self-contained --output artifacts/release/iis/efbundle.exe
+      - name: Build Docker image and validate deployment scripts
+        env:
+          RELEASE_SHA: ${{ github.sha }}
+        run: |
+          docker build --pull --build-arg REVISION="$RELEASE_SHA" -t "copilot-web:$RELEASE_SHA" .
+          pwsh -NoProfile -File scripts/deploy/Validate-Scripts.ps1
+          pwsh -NoProfile -File scripts/deploy/Test-DeploymentHelpers.ps1
+      - name: Save release metadata and Docker image
+        env:
+          RELEASE_SHA: ${{ github.sha }}
+          CI_RUN_ID: ${{ github.run_id }}
+        run: |
+          mkdir -p artifacts/release/docker
+          python3 -c 'import json,os,pathlib; data={"commit":os.environ["RELEASE_SHA"],"runId":os.environ["CI_RUN_ID"]}; [(pathlib.Path("artifacts/release")/target/"release.json").write_text(json.dumps(data)) for target in ["iis","docker"]]'
+          docker save "copilot-web:$RELEASE_SHA" -o artifacts/release/docker/image.tar
+      - name: Upload IIS release
+        uses: actions/upload-artifact@v4
+        with:
+          name: iis-release
+          path: artifacts/release/iis
+          if-no-files-found: error
+          retention-days: 14
+      - name: Upload Docker release
+        uses: actions/upload-artifact@v4
+        with:
+          name: docker-release
+          path: artifacts/release/docker
+          compression-level: 0
+          if-no-files-found: error
+          retention-days: 14
