@@ -1,7 +1,7 @@
 FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 WORKDIR /src
 
-COPY Directory.Build.props Directory.Packages.props global.json ./
+COPY Directory.Build.props Directory.Packages.props global.json NuGet.Config ./
 COPY src/Domain/Domain.csproj src/Domain/
 COPY src/Shared/Shared.csproj src/Shared/
 COPY src/Application/Application.csproj src/Application/
