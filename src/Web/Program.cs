@@ -1,17 +1,6 @@
 using CoPilot.Infrastructure.Data;
-using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
-
-// The Local profile uses an existing database and must never run development seeding.
-// Keep its credentials separate from the disposable Aspire Development database.
-if (builder.Environment.IsEnvironment("Local"))
-{
-    builder.Configuration
-        .AddUserSecrets("CoPilot.Web.Local")
-        .AddEnvironmentVariables()
-        .AddCommandLine(args);
-}
 
 // Add services to the container.
 builder.AddServiceDefaults();
@@ -43,11 +32,12 @@ app.UseCors(static builder =>
 app.UseFileServer();
 
 app.MapOpenApi();
-app.MapScalarApiReference();
+app.UseSwaggerUI(options =>
+    options.SwaggerEndpoint("../openapi/v1.json", "CoPilot API v1"));
 
 app.UseExceptionHandler(options => { });
 
-app.Map("/", () => Results.Redirect("/scalar"));
+app.Map("/", () => Results.Redirect("/swagger"));
 
 app.MapDefaultEndpoints();
 app.MapEndpoints(typeof(Program).Assembly);

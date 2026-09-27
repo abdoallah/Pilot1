@@ -6,4 +6,5 @@
 **/*.suo
 **/bin
 **/obj
+src/Web/appsettings.Local.json
 tests/

@@ -11,6 +11,7 @@ public class TodoLists : IEndpointGroup
     public static void Map(RouteGroupBuilder groupBuilder)
     {
         groupBuilder.RequireAuthorization();
+        groupBuilder.MapHealthChecks("/health");
 
         groupBuilder.MapGet(GetTodoLists);
         groupBuilder.MapPost(CreateTodoList);

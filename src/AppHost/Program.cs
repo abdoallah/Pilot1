@@ -17,8 +17,8 @@ var web = builder.AddProject<Projects.Web>(Services.WebApi)
     .WithAspNetCoreEnvironment()
     .WithUrlForEndpoint("http", url =>
     {
-        url.DisplayText = "Scalar API Reference";
-        url.Url = "/scalar";
+        url.DisplayText = "Swagger UI";
+        url.Url = "/swagger";
     });
 
 
