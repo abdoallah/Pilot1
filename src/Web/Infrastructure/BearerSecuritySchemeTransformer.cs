@@ -1,12 +1,13 @@
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.OpenApi;
 using Microsoft.OpenApi;
 
 namespace CoPilot.Web.Infrastructure;
 
 /// <summary>
-/// Adds the Bearer JWT security scheme to the OpenAPI document when Bearer authentication
-/// is configured, enabling the Scalar UI to send <c>Authorization: Bearer &lt;token&gt;</c>
+/// Adds the bearer token security scheme to the OpenAPI document when bearer authentication
+/// is configured, enabling Swagger UI to send <c>Authorization: Bearer &lt;token&gt;</c>
 /// headers from the interactive documentation.
 /// </summary>
 internal sealed class BearerSecuritySchemeTransformer(IAuthenticationSchemeProvider authenticationSchemeProvider) : IOpenApiDocumentTransformer
@@ -14,7 +15,7 @@ internal sealed class BearerSecuritySchemeTransformer(IAuthenticationSchemeProvi
     public async Task TransformAsync(OpenApiDocument document, OpenApiDocumentTransformerContext context, CancellationToken cancellationToken)
     {
         var authenticationSchemes = await authenticationSchemeProvider.GetAllSchemesAsync();
-        if (authenticationSchemes.Any(authScheme => authScheme.Name == "Bearer"))
+        if (authenticationSchemes.Any(authScheme => authScheme.Name == IdentityConstants.BearerScheme))
         {
             var requirements = new Dictionary<string, IOpenApiSecurityScheme>
             {
@@ -22,8 +23,7 @@ internal sealed class BearerSecuritySchemeTransformer(IAuthenticationSchemeProvi
                 {
                     Type = SecuritySchemeType.Http,
                     Scheme = "bearer",
-                    In = ParameterLocation.Header,
-                    BearerFormat = "Json Web Token"
+                    In = ParameterLocation.Header
                 }
             };
             document.Components ??= new OpenApiComponents();

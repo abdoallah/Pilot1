@@ -71,7 +71,20 @@ To run against an existing local database without deleting or migrating its data
 dotnet run --project src/Web --launch-profile local
 ```
 
-Open `http://localhost:5217/scalar`; readiness is at `http://localhost:5217/health`. This profile sets both environment names to `Local` and loads the `CoPilot.Web.Local` .NET User Secrets store. Configure `ConnectionStrings:CoPilotDb` there, plus an optional machine-specific `DataProtection:KeysPath`. These values are stored outside the repository and are only loaded by the Local profile. They are not loaded by the Development profiles or published with the app. To update a value, use `dotnet user-secrets set --id CoPilot.Web.Local <key> <value>`, or pipe a JSON object to that command without key/value arguments.
+Open `http://localhost:5217/swagger`; readiness is at `http://localhost:5217/health`. This profile sets both environment names to `Local` and reads `src/Web/appsettings.Local.json` through the standard ASP.NET Core configuration loader. Put `ConnectionStrings:CoPilotDb` in that file, plus an optional `DataProtection:KeysPath`. The file is ignored by Git and excluded from publish output, so it stays on this machine. GitHub Environment secrets are separate and do not supply local settings.
+
+For example, the local file has this shape (replace the example values with your own):
+
+```json
+{
+  "ConnectionStrings": {
+    "CoPilotDb": "Server=localhost;Database=CoPilotDb;User Id=...;Password=...;TrustServerCertificate=True"
+  },
+  "DataProtection": {
+    "KeysPath": "C:\\path\\to\\local-keys"
+  }
+}
+```
 
 Use Aspire (`dotnet run --project src/AppHost`) for locally provisioned dependencies, or set `ConnectionStrings__CoPilotDb` in your shell/secret store when running the web project directly. Never point the Development environment at a database containing data to retain: its template initializer deletes and recreates the database.
 

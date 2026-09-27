@@ -9,6 +9,8 @@
 *.user
 *.userosscache
 *.sln.docstates
+# Local Web configuration can contain database credentials.
+src/Web/appsettings.Local.json
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
